@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: node:8.9.4
+      - image: circleci/node:8.9.4
       - image: circleci/ruby:2.5.0
         environment:
           BUNDLE_JOBS: 3
