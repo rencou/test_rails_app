@@ -3,11 +3,30 @@ jobs:
   build:
     parallelism: 1
     working_directory: ~/circleci-test-app-rails
-  steps:
-    - checkout
-    - run:
-      name: Database setup
-      command: bundle exec rake db:create db:schema:load --trace
-    - run:
-      name: Rspec
-      command: bundle exec rspec spec --progress
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "Gemfile.lock" }}
+
+      - run:
+          name: install dependencies
+          command: |
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
+      # Database setup
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:schema:load
+
+      # run tests!
+      - run:
+          name: Rspec
+          command: bundle exec rspec spec --progress
+
