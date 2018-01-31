@@ -1,7 +1,9 @@
 version: 2
 jobs:
   build:
-    machine: true
+    machine:
+      ruby:
+        version: 2.5.0
     parallelism: 1
     working_directory: ~/circleci-test-app-rails
 
