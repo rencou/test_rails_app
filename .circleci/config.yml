@@ -39,9 +39,14 @@ jobs:
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
       - run:
+          command:
+            sudo apt-get install nodejs
+
+      - run:
           name: version check
           command: |
             echo `node -v`
+            echo `ruby -v`
 
       # Database setup
       - run: bundle exec rails db:create
