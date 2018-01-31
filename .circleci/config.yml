@@ -12,7 +12,7 @@ jobs:
           RAILS_ENV: test
       - image: circleci/mysql:5.6.39-ram
         environment:
-          ENV MYSQL_ALLOW_EMPTY_PASSWORD: true
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
           MYSQL_DATABASE: test_app_test
           MYSQL_HOST: 127.0.0.1
           MYSQL_ROOT_HOST: %
