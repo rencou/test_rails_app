@@ -1,0 +1,13 @@
+version: 2
+jobs:
+  build:
+    parallelism: 1
+    working_directory: ~/circleci-test-app-rails
+  steps:
+    - checkout
+    - run:
+      name: Database setup
+      command: bundle exec rake db:create db:schema:load --trace
+    - run:
+      name: Rspec
+      command: bundle exec rspec spec --progress
