@@ -61,5 +61,5 @@ jobs:
       # run tests!
       - run:
           name: Rspec
-          command: bundle exec rspec spec --progress
+          command: bundle exec rspec spec --format progress
 
