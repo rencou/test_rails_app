@@ -31,6 +31,12 @@ jobs:
             echo `node -v`
             echo `ruby -v`
 
+      - run:
+          command: |
+            touch .env
+            echo 'DATABASE_USERNAME="root"' >> .env
+            echo 'DATABASE_PASSWORD=""' >> .env
+
       - checkout
 
       - restore_cache:
