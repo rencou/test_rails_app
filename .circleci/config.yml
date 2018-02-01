@@ -24,7 +24,6 @@ jobs:
       - run:
           command:
             sudo apt-get install nodejs
-            sudo apt-get install npm
             which node
             which npm
 
@@ -33,6 +32,7 @@ jobs:
           command: |
             echo `nodejs -v`
             echo `node -v`
+            echo `npm -v`
             echo `ruby -v`
 
       - checkout
