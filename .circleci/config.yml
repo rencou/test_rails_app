@@ -38,6 +38,7 @@ jobs:
             touch .env
             echo 'DATABASE_USERNAME="root"' >> .env
             echo 'DATABASE_PASSWORD=""' >> .env
+            echo 'DATABASE_HOST="127.0.0.1"'
 
       - restore_cache:
           keys:
