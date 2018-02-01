@@ -47,22 +47,6 @@ jobs:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
-      - restore_cache:
-          key: job-medley-yarn-{{ checksum "yarn.lock" }}
-      - run:
-          name: Yarn install
-          command: |
-            echo "Node $(node -v)"
-            echo "Yarn v$(yarn --version)"
-            yarn config set cache-folder ./yarn_cache
-            echo "Yarn v$(yarn cache dir)"
-            yarn install
-      - save_cache:
-          key: job-medley-yarn-{{ checksum "yarn.lock" }}
-          paths:
-            - node_modules
-            - yarn_cache
-
       # Database setup
       - run: bundle exec rails db:create
       - run: bundle exec rails db:migrate
