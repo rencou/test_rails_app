@@ -38,7 +38,7 @@ jobs:
 
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "Gemfile.lock" }}
+          - gems-{{ checksum "Gemfile.lock" }}
 
       - run:
           name: install dependencies
@@ -48,7 +48,7 @@ jobs:
       - save_cache:
           paths:
             - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+          key: gems-{{ checksum "Gemfile.lock" }}
 
       # Database setup
       - run: bundle exec rails db:create
